@@ -13,7 +13,7 @@
 
 float getFileSize(FILE * filename){
     if (filename == NULL) {
-        std::cerr << "Error opening file.\n";
+        std::cerr << "Error opening file." << std::endl;
         return -1;
     }
     else{

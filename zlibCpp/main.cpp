@@ -17,10 +17,10 @@
 #include "restoreExt.h"
 
 void printHelp(){
-    std::cerr << "Usage:  zlib -cdh\n";
+    std::cerr << "Usage:  zlib -cdh" << std::endl;
     std::cerr << "-c\tfile to compress\n";
     std::cerr << "-d\tfile to decompress\n";
-    std::cerr << "-h\tshow this help\n";
+    std::cerr << "-h\tshow this help" << std::endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
                 def(inFile, outFile, Z_DEFAULT_COMPRESSION);
                 
                 std::cout << "Compressed with rate: " <<
-                getFileSize(inFile) / getFileSize(outFile) << "\n";
+                getFileSize(inFile) / getFileSize(outFile) << std::endl;
                 break;
             }
             // decompress
@@ -60,10 +60,6 @@ int main(int argc, char *argv[]) {
             }
             // help 
             case 'h':
-            {
-                printHelp();
-                break;
-            }
             default:
                 printHelp();
                 break;
