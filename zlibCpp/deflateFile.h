@@ -6,13 +6,11 @@
 //  Copyright © 2016 shura. All rights reserved.
 //
 
-//  todo
 
-#include <assert.h>
-#include "makeBuffers.h"
+#ifndef deflateFile_h
+#define deflateFile_h
 
-#ifndef gzWrite_h
-#define gzWrite_h
+uInt _SIZE = 10000;
 
 int def(FILE *source, FILE *dest, int level)
 {
@@ -65,4 +63,4 @@ int def(FILE *source, FILE *dest, int level)
 }
 
 
-#endif /* gzWrite_h */
+#endif /* deflateFile_h */
