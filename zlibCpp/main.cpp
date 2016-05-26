@@ -5,60 +5,38 @@
 //  Created by Шура on 09.04.16.
 //  Copyright © 2016 shura. All rights reserved.
 //
-//  links with -lz flags
+//  link with -lz flags
 
-#include <iostream>
-#include <zlib.h>
-#include <unistd.h> // getopt
-#include <assert.h>
-#include "getFileSize.h"
-#include "deflateFile.h"
-#include "inflateFile.h"
-#include "restoreExt.h"
-
-void printHelp(){
-    std::cerr << "Usage:  zlib -cdh" << std::endl;
-    std::cerr << "-c\tfile to compress\n";
-    std::cerr << "-d\tfile to decompress\n";
-    std::cerr << "-h\tshow this help" << std::endl;
-}
+#include "gzStream.hpp"
 
 int main(int argc, char *argv[]) {
     if (argc ==1) {
         std::cerr << "Wrong options.\n";
+        printHelp();
         return -1;
     }
     
-    char const *opts = "c:d:h";
+    char const *opts = "e:c:d:kh";
     int opt;
     
-    // extension
-    const char * ext = ".z";
+    gzStream myFile;
     
     while ((opt = getopt(argc, argv, opts)) != -1) {
         switch (opt) {
-            // compress
             case 'c':
-            {
-                FILE * inFile = fopen(optarg, "r");
-                FILE * outFile = fopen(strcat(optarg, ext), "wb");
-                
-                def(inFile, outFile, Z_DEFAULT_COMPRESSION);
-                
-                std::cout << "Compressed with rate: " <<
-                getFileSize(inFile) / getFileSize(outFile) << std::endl;
+                myFile.open(optarg);
+                myFile.compress();
                 break;
-            }
-            // decompress
             case 'd':
-            {
-                FILE * inFile = fopen(optarg, "r");
-                FILE * outFile = fopen(restoreExt(optarg, ext), "wb");
-                
-                inf(inFile, outFile);
+                myFile.open(optarg);
+                myFile.decompress();
                 break;
-            }
-            // help 
+            case 'e':
+                myFile.setExt(optarg);
+                break;
+            case 'k':
+                myFile.setDelete();
+                break;
             case 'h':
             default:
                 printHelp();

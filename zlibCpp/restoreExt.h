@@ -9,14 +9,10 @@
 #ifndef restoreExt_h
 #define restoreExt_h
 
-#include <string>
-
-const char * restoreExt (char * optarg, const char * ext){
-    std::string str(optarg);
-    std::string sext(ext);
-    str.substr(0, sext.size());
-    str.erase((str.size()-sext.size()), sext.size());
-    return str.c_str();
+const char * removeExt (std::string file, std::string ext){
+    file.substr(0, ext.size());
+    file.erase((file.size()-ext.size()), ext.size());
+    return file.c_str();
 }
 
 #endif /* restoreExt_h */

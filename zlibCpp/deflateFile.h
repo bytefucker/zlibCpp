@@ -10,7 +10,7 @@
 #ifndef deflateFile_h
 #define deflateFile_h
 
-uInt _SIZE = 10000;
+int _SIZE = 10000;
 
 int def(FILE *source, FILE *dest, int level)
 {

@@ -9,8 +9,6 @@
 #ifndef getFileSize_h
 #define getFileSize_h
 
-#include <fstream>
-
 float getFileSize(FILE * filename){
     if (filename == NULL) {
         std::cerr << "Error opening file." << std::endl;
